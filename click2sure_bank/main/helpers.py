@@ -6,7 +6,7 @@ acc1 = Account.objects.create(acc_user=user, acc_type='CRT')
 acc1.uuid_generate()
 
 acc1.open_account()
-acc1.withdraw(withdraw_value=101000)
+# acc1.withdraw(withdraw_value=101000)
 acc1.deposit(dep_value=2000)
 acc1.withdraw(withdraw_value=101000)
 
