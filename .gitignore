@@ -1,0 +1,10 @@
+## OSX shit
+.DS_Store
+
+## Python byte files
+*.pyc
+
+## Databases
+*.sqlite3
+
+
