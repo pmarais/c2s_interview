@@ -1,4 +1,4 @@
-Click2Sure Techincal interview
+Click2Sure Techical interview
 ==============================
 
 Get started with this repository
