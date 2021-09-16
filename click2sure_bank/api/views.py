@@ -5,7 +5,7 @@ from main.models import User, Transaction, Account
 from rest_framework import generics, permissions
 
 ## import serializers
-from .serializers import UserSerializer, AccountSerialiser, TransactionSerialiser
+from .serializers import UserSerializer, AccountSerialiser, TransactionSerialiser, CreateSavingsAccountSerialiser
 
 # Create your views here.
 
@@ -29,6 +29,12 @@ class MyAccountListiew(generics.ListAPIView):
 
     def get_queryset(self):
         return Account.objects.filter(acc_user__pk=self.request.user.pk)
+
+class CreateSavingsAccountView(generics.CreateAPIView):
+    model = Account
+    queryset = Account.objects.all().order_by('-pk')
+    serializer_class = CreateSavingsAccountSerialiser
+    permission_classes = (permissions.IsAuthenticated,)
 
 class TransactionListiew(generics.ListCreateAPIView):
     model = Transaction

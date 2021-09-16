@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^users/$', views.UserListiew.as_view(), name='users'),
     url(r'^accounts/$', views.AccountListiew.as_view(), name='accounts'),
     url(r'^myaccounts/$', views.MyAccountListiew.as_view(), name='myaccounts'),
+    url(r'^create_savings_account/$', views.CreateSavingsAccountView.as_view(), name='create_savings_account'),
     url(r'^transactions/$', views.TransactionListiew.as_view(), name='transactions'),
 
 ]
