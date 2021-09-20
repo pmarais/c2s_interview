@@ -17,12 +17,13 @@ urlpatterns = [
 
     ## Users
     url(r'^users/$', views.UserListiew.as_view(), name='users'),
-    url(r'^accounts/$', views.AccountListiew.as_view(), name='accounts'),
-    url(r'^myaccounts/$', views.MyAccountListiew.as_view(), name='myaccounts'),
-    url(r'^create_savings_account/$', views.CreateSavingsAccountView.as_view(), name='create_savings_account'),
-    url(r'^withdraw_savings_account/$', views.WithdrawSavingsAccountView.as_view(), name='withdraw_savings_account'),
+    url(r'^savings_accounts/$', views.SavingsAccountListiew.as_view(), name='savings_accounts'),
+    url(r'^current_accounts/$', views.CurrentAccountListiew.as_view(), name='current_accounts'),
+    url(r'^my_savings_accounts/$', views.MySavingsAccountListiew.as_view(), name='my_savings_accounts'),
+    # url(r'^create_savings_account/$', views.CreateSavingsAccountView.as_view(), name='create_savings_account'),
+    # url(r'^withdraw_savings_account/$', views.WithdrawSavingsAccountView.as_view(), name='withdraw_savings_account'),
     url(r'^transactions/$', views.TransactionListiew.as_view(), name='transactions'),
-    url(r'^savings_account_withdraw/(?P<pk>[0-9]+)/$', views.SavingsAccountWithdraw.as_view(),  name="savings_account_withdraw"),
+    # url(r'^savings_account_withdraw/(?P<pk>[0-9]+)/$', views.SavingsAccountWithdraw.as_view(),  name="savings_account_withdraw"),
 
 ]
     

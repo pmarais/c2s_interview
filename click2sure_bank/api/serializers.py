@@ -11,10 +11,10 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
-#############
-## Account ##
-#############
-class AccountSerialiser(serializers.ModelSerializer):
+##############
+## Accounts ##
+##############
+class SavingsAccountSerialiser(serializers.ModelSerializer):
     class Meta:
         model = SavingsAccount
         fields = '__all__'
@@ -22,77 +22,88 @@ class AccountSerialiser(serializers.ModelSerializer):
 #############
 ## Account ##
 #############
-class CreateSavingsAccountSerialiser(serializers.ModelSerializer):
-    deposit_value = serializers.FloatField(write_only=True)
-    acc_comment = serializers.CharField(read_only=True, required=False)
-    # accounts = serializers.SerializerMethodField()
-
+class CurrentAccountSerialiser(serializers.ModelSerializer):
     class Meta:
-        model = SavingsAccount
-        # fields = '__all__'
-        fields = ('deposit_value', 'acc_comment',
-         # 'accounts'
-         )
+        model = CurrentAccount
+        fields = '__all__'
 
-    def create(self, validated_data):
+# #############
+# ## Account ##
+# #############
+# class CreateSavingsAccountSerialiser(serializers.ModelSerializer):
+#     deposit_value = serializers.FloatField(write_only=True)
+#     acc_comment = serializers.CharField(read_only=True, required=False)
+#     # accounts = serializers.SerializerMethodField()
 
-        try:
+#     class Meta:
+#         model = SavingsAccount
+#         # fields = '__all__'
+#         fields = ('deposit_value', 'acc_comment',
+#          # 'accounts'
+#          )
 
-            acc = SavingsAccount.objects.create(acc_user=self.context['request'].user, acc_type='SVG')
-            acc.uuid_generate()
+#     def create(self, validated_data):
 
-            ## open account with starting balance
-            acc.open_account(dep_value=validated_data['deposit_value'])
-            return {'acc_comment': "Created: %s"%acc}
+#         try:
 
-        except AssertionError as error:
-            print(error)
-            return {'acc_comment': error}
+#             acc = SavingsAccount.objects.create(acc_user=self.context['request'].user, acc_type='SVG')
+#             acc.uuid_generate()
+
+#             ## open account with starting balance
+#             acc.open_account(dep_value=validated_data['deposit_value'])
+#             return {'acc_comment': "Created: %s"%acc}
+
+#         except AssertionError as error:
+#             print(error)
+#             return {'acc_comment': error}
     
-    # def get_accounts(self, obj):
-    #     accounts = [acc.id for acc in self.context['request'].user.user_accounts.filter(acc_type='SVG')]
-    #     return accounts
+#     # def get_accounts(self, obj):
+#     #     accounts = [acc.id for acc in self.context['request'].user.user_accounts.filter(acc_type='SVG')]
+#     #     return accounts
 
 
 #################
 ## Transaction ##
 #################
-class TransactionSerialiser(serializers.ModelSerializer):
+class TransactionSerializer(serializers.ModelSerializer):
+    tr_caccount = CurrentAccountSerialiser(read_only=True)
+    tr_saccount = SavingsAccountSerialiser(read_only=True)
+
     class Meta:
         model = Transaction
         fields = '__all__'
 
-class WithdrawSavingsAccountSerialiser(serializers.ModelSerializer):
-    withdraw_value = serializers.FloatField(write_only=True)
-    withdraw_response = serializers.CharField(read_only=True, required=False)
-    tr_account = AccountSerialiser(read_only=True)
-    withdraw_account_id = serializers.FloatField(write_only=True)
+# class WithdrawSavingsAccountSerialiser(serializers.ModelSerializer):
+#     withdraw_value = serializers.FloatField(write_only=True)
+#     withdraw_response = serializers.CharField(read_only=True, required=False)
+#     tr_account = AccountSerialiser(read_only=True)
+#     withdraw_account_id = serializers.FloatField(write_only=True)
 
-    class Meta:
-        model = Transaction
-        # fields = '__all__'
-        fields = ('withdraw_value', 'withdraw_response', 'tr_account'
-         # 'accounts'
-         )
+#     class Meta:
+#         model = Transaction
+#         # fields = '__all__'
+#         fields = ('withdraw_value', 'withdraw_response', 'tr_account'
+#          # 'accounts'
+#          )
 
-    def create(self, validated_data):
+#     def create(self, validated_data):
 
-        try:
+#         try:
 
-            acc = Account.objects.get(acc_user=self.context['request'].user, acc_type='SVG')
-            acc.uuid_generate()
+#             acc = Account.objects.get(acc_user=self.context['request'].user, acc_type='SVG')
+#             acc.uuid_generate()
 
-            ## open account with starting balance
-            acc.open_account(dep_value=validated_data['deposit_value'])
-            return {'acc_comment': "Created: %s"%acc}
+#             ## open account with starting balance
+#             acc.open_account(dep_value=validated_data['deposit_value'])
+#             return {'acc_comment': "Created: %s"%acc}
 
-        except AssertionError as error:
-            print(error)
-            return {'acc_comment': error}
+#         except AssertionError as error:
+#             print(error)
+#             return {'acc_comment': error}
     
-    # def get_accounts(self, obj):
-    #     accounts = [acc.id for acc in self.context['request'].user.user_accounts.filter(acc_type='SVG')]
-    #     return accounts
+#     # def get_accounts(self, obj):
+#     #     accounts = [acc.id for acc in self.context['request'].user.user_accounts.filter(acc_type='SVG')]
+#     #     return accounts
 
 
 

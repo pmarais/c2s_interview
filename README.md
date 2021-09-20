@@ -15,7 +15,9 @@ Get started with this repository
 8. Visit http://localhost:8000/api/accounts/ and you should see a list of created accounts
 9. Visit http://localhost:8000/api/users/ and you should see a list of created users
 10. Visit http://localhost:8000/api/transactions/ and you should see a list of created transactions
-11. Visit http://localhost:8000/api/myaccounts/ and you should see `"detail": "Authentication credentials were not provided."`
+11. Visit http://localhost:8000/api/my_savings_accounts/ and you should see `"detail": "Authentication credentials were not provided."`
 12. Visit http://localhost:8000/admin/ and login with the account you created
-13. Visit http://localhost:8000/api/myaccounts/ and you should see your accounts (although it is the same as the 'all accounts')
+13. Visit http://localhost:8000/api/my_savings_accounts/ and you should see your accounts (although it is the same as the 'all accounts')
 14. You should be able to add a new transaction at http://localhost:8000/api/transactions/ adding values for all fields, but leaving the `tr_hash` field blank
+	1. Will show all transactions.
+	2. Will show nested Accounts
