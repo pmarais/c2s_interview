@@ -1,3 +1,6 @@
+#############
+## Current ##
+#############
 ## Import the required models iobjects
 from main.models import *
 
@@ -38,7 +41,7 @@ acc2 = SavingsAccount.objects.create(acc_user=user)
 acc2.uuid_generate()
 
 ## This will throw an assertion error if run in sequence
-acc2.deposit(dep_value=50)
+# acc2.deposit(dep_value=50)
 
 ## open account with starting balance
 acc2.open_account(dep_value=1000)
@@ -48,3 +51,48 @@ acc2.deposit(dep_value=5330)
 ## Make withdrawals
 acc2.withdraw(withdraw_value=75)
 acc2.withdraw(withdraw_value=35)
+
+
+
+#####################
+## Account Service ##
+#####################
+## Import the required models iobjects
+from main.models import *
+
+accservice = AccountService(userid = 1)
+accservice.open_savings(account_id="One", ammount_to_deposit=100)
+accservice.open_savings(account_id="One", ammount_to_deposit=1000)
+
+accservice = AccountService(userid = 1)
+accservice.deposit(account_id="One", ammount_to_deposit=50)
+
+accservice = AccountService(userid = 1)
+accservice.deposit(account_id="Two", ammount_to_deposit=50)
+accservice.deposit(account_id="Three", ammount_to_deposit=50)
+
+
+accservice = AccountService(userid = 1)
+accservice.open_current(account_id="Three")
+
+accservice = AccountService(userid = 1)
+accservice.withdraw(account_id="Three", ammount_to_withdraw=30)
+
+
+accservice = AccountService(userid = 1)
+accservice.open_current(account_id="Four", acc_overdraft_limit=30000)
+
+accservice = AccountService(userid = 1)
+accservice.withdraw(account_id="Four", ammount_to_withdraw=30)
+
+
+
+
+
+
+
+
+
+
+
+
