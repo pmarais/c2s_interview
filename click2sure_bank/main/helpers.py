@@ -4,6 +4,9 @@
 ## Import the required models iobjects
 from main.models import *
 
+if User.objects.all().count() == 0:
+	User.objects.create_user(username='user1', email='user@space.com', first_name="first", last_name="last", password='this')
+
 ## Initiate an account service instance
 ## Specify a user PK number
 accservice = AccountService(userid = 1)
