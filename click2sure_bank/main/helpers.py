@@ -5,16 +5,14 @@ from main.models import *
 user = User.objects.all()[0]
 
 ## Create a current account
-acc1 = Account.objects.create(acc_user=user, acc_type='CRT')
-## Prompt the account to create a UUID number
-acc1.uuid_generate()
+acc1 = CurrentAccount.objects.create(acc_user=user)
 
 ## Run the model method to open the account
 ## The current account does not require a depost, so one is not specified
-acc1.open_account()
+acc1.open_account(dep_value=0)
 
 ## If run in sequence this will throw an AssertionError
-# acc1.withdraw(withdraw_value=101000)
+acc1.withdraw(withdraw_value=101000)
 
 ## Add a deposit
 acc1.deposit(dep_value=2000)
@@ -23,11 +21,11 @@ acc1.deposit(dep_value=2000)
 acc1.withdraw(withdraw_value=101000)
 
 ## Create a savingsaccount
-acc2 = Account.objects.create(acc_user=user, acc_type='SVG')
+acc2 = SavingsAccount.objects.create(acc_user=user)
 acc2.uuid_generate()
 
 ## This will throw an assertion error if run in sequence
-# acc.deposit(dep_value=50)
+acc2.deposit(dep_value=50)
 
 ## open account with starting balance
 acc2.open_account(dep_value=1000)

@@ -20,7 +20,9 @@ urlpatterns = [
     url(r'^accounts/$', views.AccountListiew.as_view(), name='accounts'),
     url(r'^myaccounts/$', views.MyAccountListiew.as_view(), name='myaccounts'),
     url(r'^create_savings_account/$', views.CreateSavingsAccountView.as_view(), name='create_savings_account'),
+    url(r'^withdraw_savings_account/$', views.WithdrawSavingsAccountView.as_view(), name='withdraw_savings_account'),
     url(r'^transactions/$', views.TransactionListiew.as_view(), name='transactions'),
+    url(r'^savings_account_withdraw/(?P<pk>[0-9]+)/$', views.SavingsAccountWithdraw.as_view(),  name="savings_account_withdraw"),
 
 ]
     
