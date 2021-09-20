@@ -21,3 +21,11 @@ Get started with this repository
 14. You should be able to add a new transaction at http://localhost:8000/api/transactions/ adding values for all fields, but leaving the `tr_hash` field blank
 	1. Will show all transactions.
 	2. Will show nested Accounts
+
+
+## Where the files are
+
+1. The main AccountService class is in `main/models.py`
+2. The the virtualenvironment is activated, you can run a basic test with `./manage.py test main`
+3. Example of the program use in `helpers.py`
+
